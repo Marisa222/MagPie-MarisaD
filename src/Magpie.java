@@ -60,14 +60,14 @@ public class Magpie {
    */
   public String getResponse(String statement) {
     String response = ""; // start a response
-    if(statement.equals(" ") || statement.length() == 0){
+    if(statement.equals(" ") || statement.trim().length() == 0){
       response = "Please type a response!";
     }
     else if (statement.indexOf("dog") != -1 || statement.indexOf("cat") != -1 
         || statement.indexOf("fish") != -1) {
       response = "Tell me more about your pets.";
     }
-    // TODO Milestone 2: handle the empty statement — the user just pressed Enter.
+    else response = getRandomResponse();
     // TODO Milestone 3: move your searches to findKeyword so whole words match.
     // TODO Milestone 4: answer several related words in one branch, with ||.
     // TODO: when nothing matches, fall through to getRandomResponse().
@@ -94,8 +94,18 @@ public class Magpie {
    * @return a non-committal string
    */
   private String getRandomResponse() {
-    // TODO: return one of several replies, chosen at random.
-    return "PLACEHOLDER DEFAULT.";
+    String[] options = {
+      "It's weird being a computer.",
+      "Strange weather we're having...",
+      "I don't know what to say.",
+      "It's nice to talk to you.",
+      "This is a computer-generated response."
+    };
+
+    // pick
+    int r = (int)(Math.random() * options.length); // FIX THIS
+
+    return options[r];
   }
 
   /**
