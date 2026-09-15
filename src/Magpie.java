@@ -59,22 +59,38 @@ public class Magpie {
    * @return a response based on the rules you write
    */
   public String getResponse(String statement) {
-    String response = ""; // start a response
+    // Start a response
+    String response = "";
+
+    // Blank statement
     if(statement.equals(" ") || statement.trim().length() == 0){
       response = "Please type a response!";
     }
-    else if (statement.indexOf("dog") != -1 || statement.indexOf("cat") != -1 
-        || statement.indexOf("fish") != -1) {
+
+    // Negative statement
+    else if (findKeyword(statement, "no") != -1) {
+      response = "Why so negative?";
+    }
+
+    // Pets
+    else if (findKeyword(statement, "dog") != -1 || findKeyword(statement, "cat") != -1 
+        || findKeyword(statement, "fish") != -1) {
       response = "Tell me more about your pets.";
     }
+
+    // Family
+    else if(findKeyword(statement, "mom") != -1 || findKeyword(statement, "dad") != -1 
+        || findKeyword(statement, "brother") != -1) {
+      response = "Tell me more about your family.";
+    }
+
+    // Random response
     else response = getRandomResponse();
     // TODO Milestone 3: move your searches to findKeyword so whole words match.
-    // TODO Milestone 4: answer several related words in one branch, with ||.
-    // TODO: when nothing matches, fall through to getRandomResponse().
-    
+    // TODO Milestone 4: answer several related words in one branch, with ||.    
     return response;
   }
-
+  
   /**
    * Pick a default response to use when nothing else fits.
    *
@@ -103,7 +119,7 @@ public class Magpie {
     };
 
     // pick
-    int r = (int)(Math.random() * options.length); // FIX THIS
+    int r = (int)(Math.random() * options.length);
 
     return options[r];
   }
