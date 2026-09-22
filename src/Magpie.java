@@ -84,10 +84,14 @@ public class Magpie {
       response = "Tell me more about your family.";
     }
 
+    // Mr. A
+    else if(findKeyword(statement, "Mr. A") != -1 || findKeyword(statement, "Mr. Adiletta  ") != -1) {
+      response = "Hi Mr. A!";
+    }
+
     // Random response
     else response = getRandomResponse();
-    // TODO Milestone 3: move your searches to findKeyword so whole words match.
-    // TODO Milestone 4: answer several related words in one branch, with ||.    
+
     return response;
   }
   
